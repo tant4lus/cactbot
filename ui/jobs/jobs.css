@@ -34,6 +34,10 @@
   left: 250px;
 }
 
+.blm #left-side-icons {
+  left: -40px;
+}
+
 .justbuffs #right-side-icons {
   position: fixed;
   left: 0px;
@@ -48,9 +52,10 @@
 }
 
 /* Relative to #bars */
-#pull-bar, #hp-bar, #mp-bar, #cp-bar, #gp-bar {
+#pull-bar, #hp-bar, #mp-bar, #mp-tick, #cp-bar, #gp-bar {
   width: 202px;
   height: 7px;
+  margin-top: 1px;
 }
 
 #pull-bar {
@@ -81,6 +86,9 @@
 }
 .drk #hp-bar, .pld #hp-bar, .blu #hp-bar {
   height: 18px;
+}
+.blm #mp-bar {
+  height: 24px;
 }
 
 /* Relative to #bars */
@@ -126,13 +134,14 @@
 }
 
 /* Relative to #bars */
-#rdm-boxes, #war-boxes, #mnk-boxes, #pld-boxes, #drk-boxes {
+#rdm-boxes, #war-boxes, #mnk-boxes, #pld-boxes, #drk-boxes, #blm-boxes {
+  display: flex;
   position: absolute;
   left: 202px;
   top: 0px;
 }
 
-#rdm-boxes>div, #war-boxes>div, #mnk-boxes>div, #pld-boxes>div, #drk-boxes>div  {
+#rdm-boxes>div, #war-boxes>div, #mnk-boxes>div, #pld-boxes>div, #drk-boxes>div, #blm-boxes>div  {
   display: inline-block;
   margin-left: 4;
   border: 1px solid rgba(0,0,0,0.7);
@@ -163,7 +172,7 @@
   height: 30px;
 }
 
-#rdm-boxes .text, #war-boxes .text, #mnk-boxes .text, #pld-boxes .text, #drk-boxes .text {
+#rdm-boxes .text, #war-boxes .text, #mnk-boxes .text, #pld-boxes .text, #drk-boxes .text, #blm-boxes .text {
   text-align: center;
   position: relative;
   top: 7px;
@@ -177,6 +186,14 @@
 #drk-boxes .text, #pld-boxes .text {
   top: 6px;
   font-size: 20px;
+}
+
+#blm-boxes > div{
+  width: 30px;
+  height: 30px;
+}
+#blm-boxes .text {
+  top: 6px;
 }
 
 /*
@@ -206,180 +223,70 @@
   display: inline-block;
   left: 142px;
 }
-#rdm-procs .inactive {
-  position: absolute;
-  display: inline-block;
-  opacity: 0.6;
-  border: 1px solid black;
-  left: 14px;
-  top: 14px;
-  width: 20px;
-  height: 20px;
-}
 
 /* Relative to #bars */
-#smn-timers {
-  position: absolute;
-  top: 146px;
-  left: 0px;
-}
-#smn-timers-ruin {
-  position: relative;
-  display: inline-block;
-  /*left: 10px;*/
-  left: calc(152px / 2);
-}
-#smn-timers-aetherflow {
-  position: relative;
-  display: inline-block;
-  left: calc(152px);
-}
-#smn-timers .inactive {
-  position: absolute;
-  display: inline-block;
-  opacity: 0.6;
-  border: 1px solid black;
-  left: 14px;
-  top: 14px;
-  width: 20px;
-  height: 20px;
-}
-#smn-stacks {
-  position: relative;
-  top: 1px;
-  width: 202px;
-  height: calc(8px * 2 - 4px);
-}
-#smn-stacks-bahamut {
-  position: relative;
-  display: inline-block;
-  width: calc(35% - 1px);
-  height: 100%;
-}
-#smn-stacks-aetherflow {
-  position: relative;
-  left: 1px;
-  display: inline-block;
-  width: 65%;
-  height: 100%;
-}
-#smn-stacks .bahamut {
-  position: relative;
-  display: inline-block;
-  margin-left: 1px;
-  border: 1px solid black;
-  width: calc(50% - 3px);
-  height: calc(100% - 2px);
-}
-#smn-stacks .bahamut.stack1 {
-  margin-left: 0px;
-  width: calc(50% - 2px);
-}
-#smn-stacks .aetherflow {
-  position: relative;
-  display: inline-block;
-  margin-left: 1px;
-  border: 1px solid black;
-  width: calc(33.33% - 3px);
-  height: calc(100% - 2px);
-}
-#smn-stacks .aetherflow.stack1 {
-  margin-left: 0px;
-  width: calc(33.33% - 2px);
-}
-#smn-stacks .channeling {
-  display: none;
-}
-#smn-stacks .bahamut {
-  background: #003d4d;
-  opacity: 0.6;
-}
-#smn-stacks .bahamut.active {
-  background: #00ccff;
-  opacity: 1;
-}
-#smn-stacks .aetherflow {
-  background: #4d0066;
-  opacity: 0.6;
-}
-#smn-stacks .aetherflow.active {
-  background: #e699ff;
-  opacity: 1;
-}
-#smn-stacks .aetherflow.dreadwyrm {
-  background: #007700;
-  opacity: 1;
-}
-#smn-timer-bahamut, #smn-timer-aetherflow {
-  display: none;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  font-size: 10px;
-}
-#smn-timer-bahamut.channeling, #smn-timer-aetherflow.channeling {
-  display: inline-block;
-}
-#smn-timer-bahamut {
-  color: #ff0066;
-}
-#smn-timer-aetherflow {
-  color: #99ff33;
-}
-
-/* Relative to #bars */
-#war-procs, #pld-procs, #mnk-procs, #ast-procs, #blu-procs {
+#war-procs, #pld-procs, #mnk-procs, #ast-procs, #blu-procs, #drk-procs, #blm-procs {
   position: absolute;
   top: 146px;
   left: 10px;
 }
 
-#mnk-procs-dragonkick, #ast-procs-combust, #blu-procs-offguard {
+#mnk-procs-dragonkick, #ast-procs-combust, #blu-procs-offguard, #blm-procs-fire{
   position: relative;
   display: inline-block;
   left: 0px;
 }
-#mnk-procs-twinsnakes, #ast-procs-benefic, #blu-procs-torment  {
+#mnk-procs-twinsnakes, #ast-procs-benefic, #blu-procs-torment, #blm-dot-thunder  {
   position: relative;
   display: inline-block;
   left: calc(142px / 2);
 }
-#mnk-procs-demolish, #ast-procs-helios {
+#mnk-procs-demolish, #ast-procs-helios, #blm-procs-thunder {
   position: relative;
   display: inline-block;
   left: 142px;
 }
 
-#pld-procs-gore {
-  position: relative;
+#blm-stacks {
+  display: flex;
+  margin-top: 1px;
+  width: 202px;
+  height: 12px;
+}
+#blm-stacks-xeno {
+  width: 50%;
+  height: 100%;
+}
+#blm-stacks-xeno > div {
+  background-color: rgba(66, 19, 128, 0.2);
+  margin-left: 2px;
   display: inline-block;
-  left: 0px;
-}
-
-/* Relative to #bars */
-.rdm-combo {
-  display: none;
-  position: absolute;
-  top: -9px;
-  width: 50px;
-  height: 6px;
-  backgroundColor: #990;
   border: 1px solid black;
+  width: calc(50% - 4px);
+  height: 100%;
 }
-.rdm-combo.active {
-  display: block;
+#blm-stacks-xeno > div.active {
+  background-color: rgb(200, 50, 200);
 }
-#rdm-combo-1 {
-  left: 0px;
-  background: #990;
+#blm-stacks-heart {
+  width: 50%;
+  height: 100%;
 }
-#rdm-combo-2 {
-  left: calc((202px - 52px) / 2);
-  background: #990;
+#blm-stacks-heart > div {
+  background-color: rgba(174, 227, 235, 0.2);
+  margin-right: 2px;
+  display: inline-block;
+  border: 1px solid black;
+  width: calc(33% - 4px);
+  height: 100%;
 }
-#rdm-combo-3 {
-  left: calc(202px - 52px);
-  background: #A00;
+#blm-stacks-heart > div.active {
+  background-color: rgb(174, 227, 235);
+}
+.blm-umbral-timer {
+  position: absolute;
+  /* fix this hack by using better layout primitives */
+  left: -242px;
 }
 
 .bar-border-color {
@@ -401,7 +308,19 @@
   background-color: rgb(215, 120, 0);
 }
 .mp-color.low {
+  background-color: rgb(210, 20, 65);
+}
+.mp-color.medium {
   background-color: rgb(65, 0, 200);
+}
+.mp-tick-color {
+  background-color: rgb(133, 192, 231);
+}
+.mp-tick-color.ice {
+  background-color: rgb(30, 80, 245);
+}
+.mp-tick-color.fire {
+  background-color: rgb(229, 56, 53);
 }
 .cp-color {
   background-color: rgb(75, 135, 230);
@@ -453,6 +372,9 @@
 }
 .drk-color-blood.mid {
   background-color: rgb(200, 0, 10);
+}
+.drk-color-darkside {
+  background-color: rgb(129, 33, 138);
 }
 .pld-color-gore {
   background-color: rgb(255, 135, 35);
@@ -510,4 +432,28 @@
 }
 .blu-color-torment {
   background-color: rgb(168, 65, 45);
+}
+.blm-color-dot {
+  background-color: rgb(110, 186, 245);
+}
+.blm-color-thunder {
+  background-color: rgb(64, 65, 163);
+}
+.blm-color-fire {
+  background-color: rgb(217, 51, 0);
+}
+.blm-umbral-timer {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.blm-umbral-timer.fire {
+  background-color: rgb(229, 56, 53);
+}
+.blm-umbral-timer.ice {
+  background-color: rgb(30, 80, 245);
+}
+.blm-xeno-timer {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.blm-xeno-timer.active {
+  background-color: rgb(200, 50, 200);
 }

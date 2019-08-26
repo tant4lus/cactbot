@@ -11,6 +11,12 @@
 // If false, no timeline of upcoming events will be displayed during fights.
 Options.TimelineEnabled = true;
 
+// Alerts & text-to-speech language.
+// Default value is the language of your timeline.
+// Remove the '//' before the line below and change the value to one
+// of the supported language ('en', 'fr', 'de', 'jp'...).
+// Options.AlertsLanguage = 'en';
+
 // If false, triggers and timelines will not show or speak text, nor play
 // sounds.
 Options.AlertsEnabled = true;
@@ -60,6 +66,10 @@ Options.AlarmSound = '../../resources/sounds/BigWigs/Alarm.ogg';
 // Path to sound played when "Long" is specified as the sound name.
 Options.LongSound = '../../resources/sounds/BigWigs/Long.ogg';
 
+// Path to sound played when the fight starts, or when "Pull" is
+// specified as the sound name.
+Options.PullSound = '../../resources/sounds/PowerAuras/sonar.ogg';
+
 // Volume between 0 and 1 to play the InfoSound at.
 Options.InfoSoundVolume = 1;
 
@@ -71,6 +81,9 @@ Options.AlarmSoundVolume = 1;
 
 // Volume between 0 and 1 to play the LongSound at.
 Options.LongSoundVolume = 1;
+
+// Volume between 0 and 1 to play the PullSound at.
+Options.PullSoundVolume = 1;
 
 // A set of nicknames to use for players, when trying to shorten names.
 Options.PlayerNicks = {
@@ -193,7 +206,7 @@ Options.Triggers = [
 //
 // Here's some example per trigger options that modify the test triggers
 // in Summerford Farms:
-// https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/triggers/test.js
+// https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/00-misc/test.js
 
 Options.PerTriggerOptions = {
   // Just like Options.DisabledTriggers, this is the trigger id to apply to.

@@ -29,12 +29,18 @@ class CactbotLanguageFr extends CactbotLanguage {
       Devotion: 'Dévouement', // 0x4bd
       FoeRequiem: 'Requiem ennemi', // up 0x8b, down 0x8c
       LeadenFist: 'Poings de plomb',
+      Devilment: 'Tango endiablé',
+      TechnicalFinish: 'Final technique',
+      StandardFinish: 'Final classique',
+      Thundercloud: 'Nuage d\'orage',
+      Firestarter: 'Pyromane',
 
       Petrification: 'Pétrification',
       BeyondDeath: 'Outre-mort',
       Burns: 'Brûlure',
       Sludge: 'Emboué',
       Doom: 'Glas',
+      StoneCurse: 'Piège de pierre',
     });
 
     this.kUIStrings = Object.freeze({

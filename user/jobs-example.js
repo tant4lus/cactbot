@@ -21,9 +21,6 @@ Options.WellFedZoneRegex = /^(Unknown Zone \([0-9A-Fa-f]+\)|Deltascape.*(Ultimat
 // Update this when new expansion happens.
 Options.MaxLevel = 80;
 
-// Option to show the stone/fire/impact procs.
-Options.ShowRdmProcs = true;
-
 // List of jobs to show an hp value for (defaults to tanks).
 Options.ShowHPNumber = ['PLD', 'WAR', 'DRK', 'GNB'];
 
@@ -59,6 +56,9 @@ Options.DrkLowMPThreshold = 4800;
 // When MP falls below this, the MP bar is highlighted with the .low CSS class
 // on paladin.
 Options.PldLowMPThreshold = 2880;
+// When MP falls below this, the MP bar is highlighted with the .low CSS class
+// on black mage.
+Options.BlmLowMPThreshold = 2400;
 
 // When TP falls below this, the TP bar is highlighted with the .low CSS class.
 Options.TPInvigorateThreshold = 600;

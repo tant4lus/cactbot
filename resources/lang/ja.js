@@ -29,12 +29,18 @@ class CactbotLanguageJa extends CactbotLanguage {
       Devotion: 'エギの加護', // 0x4bd
       FoeRequiem: '魔人のレクイエム', // up 0x8b, down 0x8c
       LeadenFist: '連撃効果アップ',
+      Devilment: '攻めのタンゴ',
+      TechnicalFinish: 'テクニカルフィニッシュ',
+      StandardFinish: 'スタンダードフィニッシュ',
+      Thundercloud: 'サンダー系魔法効果アップ',
+      Firestarter: 'ファイガ効果アップ',
 
       Petrification: '石化',
       BeyondDeath: '死の超越',
       Burns: '火傷',
       Sludge: '汚泥',
       Doom: '死の宣告',
+      StoneCurse: '石化の呪い',
 
       // UWU
       Windburn: '裂傷',

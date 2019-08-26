@@ -29,13 +29,18 @@ class CactbotLanguageKo extends CactbotLanguage {
       Devotion: '에기의 가호', // 0x4bd
       FoeRequiem: '마인의 진혼곡', // up 0x8b, down 0x8c
       LeadenFist: 'FIXME',
+      Devilment: 'FIXME',
+      TechnicalFinish: 'FIXME',
+      StandardFinish: 'FIXME',
+      Thundercloud: 'FIXME',
+      Firestarter: 'FIXME',
 
-      // TODO: add ids
       Petrification: '석화',
       BeyondDeath: '죽음의 초월',
       Burns: '화상',
       Sludge: '진흙탕',
       Doom: '죽음의 선고',
+      StoneCurse: 'FIXME',
 
       // UWU
       Windburn: '열상',

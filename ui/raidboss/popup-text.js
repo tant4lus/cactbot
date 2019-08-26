@@ -13,10 +13,6 @@ class PopupText {
 
     this.kMaxRowsOfText = 2;
 
-    this.stunJobs = ['SAM', 'NIN', 'ROG', 'DRG', 'LNC', 'MNK', 'PGL', 'WAR', 'MRD', 'PLD', 'GLA', 'DRK', 'GNB'];
-    this.silenceJobs = ['MCH', 'BRD', 'ARC', 'DNC', 'BLU', 'GNB', 'GLA', 'PLD', 'MRD', 'WAR', 'DRK', 'GNB'];
-    this.sleepJobs = ['BLM', 'WHM'];
-
     this.Reset();
   }
 
@@ -33,8 +29,7 @@ class PopupText {
   OnDataFilesRead(e) {
     this.triggerSets = Options.Triggers;
     for (let filename in e.detail.files) {
-      // Reads from the data/triggers/ directory.
-      if (!filename.startsWith('triggers/'))
+      if (!filename.endsWith('.js'))
         continue;
 
       let text = e.detail.files[filename];
@@ -133,8 +128,14 @@ class PopupText {
         // Save the triggers from each set that matches.
         Array.prototype.push.apply(this.triggers, set.triggers);
         // And set the timeline files/timelines from each set that matches.
-        if (set.timelineFile)
-          timelineFiles.push(set.timelineFile);
+        if (set.timelineFile) {
+          if (set.filename) {
+            let dir = set.filename.substring(0, set.filename.lastIndexOf('/'));
+            timelineFiles.push(dir + '/' + set.timelineFile);
+          } else {
+            console.error('Can\'t specify timelineFile in non-manifest file:' + set.timelineFile);
+          }
+        }
         if (set.timeline)
           addTimeline(set.timeline);
         if (set.timelineReplace)
@@ -197,6 +198,8 @@ class PopupText {
     if (this.data && this.data.currentHP)
       preserveHP = this.data.currentHP;
 
+    // TODO: make a breaking change at some point and
+    // make all this style consistent, sorry.
     this.data = {
       me: this.me,
       job: this.job,
@@ -206,9 +209,12 @@ class PopupText {
       ShortName: this.ShortNamify,
       StopCombat: () => this.SetInCombat(false),
       ParseLocaleFloat: parseFloat,
-      CanStun: () => this.stunJobs.indexOf(this.job) >= 0,
-      CanSilence: () => this.silenceJobs.indexOf(this.job) >= 0,
-      CanSleep: () => this.sleepJobs.indexOf(this.job) >= 0,
+      CanStun: () => Util.canStun(this.job),
+      CanSilence: () => Util.canSilence(this.job),
+      CanSleep: () => Util.canSleep(this.job),
+      CanCleanse: () => Util.canCleanse(this.job),
+      CanFeint: () => Util.canFeint(this.job),
+      CanAddle: () => Util.canAddle(this.job),
     };
     this.StopTimers();
     this.triggerSuppress = {};
@@ -271,7 +277,7 @@ class PopupText {
       // in this object can also be functions.
       if (result !== Object(result))
         return result;
-      let lang = this.options.Language || 'en';
+      let lang = this.options.AlertsLanguage || this.options.Language || 'en';
       if (result[lang])
         return ValueOrFunction(result[lang]);
       // For partially localized results where this localization doesn't
@@ -455,7 +461,16 @@ class PopupText {
       // on (speech=true, text=true, sound=true) but this will
       // not cause tts to play over top of sounds or noises.
       if (ttsText && playSpeech) {
+        // Heuristics for auto tts.
+        // * Remove a bunch of chars.
         ttsText = ttsText.replace(/[#!]/, '');
+        // * slashes between mechanics
+        ttsText = ttsText.replace('/', ' ');
+        // * arrows at the front or the end are directions, e.g. "east =>"
+        ttsText = ttsText.replace(/[-=]>\s*$/, '');
+        ttsText = ttsText.replace(/^\s*<[-=]/, '');
+        // * arrows in the middle are a sequence, e.g. "in => out => spread"
+        ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/, ' then ');
         let cmd = { 'say': ttsText };
         OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify(cmd));
       } else if (soundUrl && playSounds) {
